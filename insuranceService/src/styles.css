@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+footer{
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 100vw;
+   text-align: center;
+   align-items: center;
+}
+
+.nav-justify{
+  display: flex;
+  justify-content:space-around; /* Equal space between elements */
+  align-items: center; /* Optional: vertically center */
+   height: 72vh;
+}
