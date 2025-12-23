@@ -1,26 +1,66 @@
-<div class="row nav-justify">
-    <div class="col-sm-6 mb-3 mb-sm-0">
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Care Health Plan</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card’s
-                    content.</p>
-                <a href="#" class="btn btn-primary" (click)="careHealth()">View more</a>
+<div class="container">
+    <div class="row nav-justify">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <img src="/assets/images/plan1.jpg" class="card-img-top img-fluid" alt="careHealth">
+                <div class="card-body">
+                    <h5 class="card-title">Care Health Plan</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card’s
+                        content.</p>
+                    <a href="#" class="btn btn-primary" (click)="careHealth()">View more</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <img src="/assets/images/plan2.jpg" class="card-img-top img-fluid" alt="goodLife">
+                <div class="card-body">
+                    <h5 class="card-title">Good Life Plan</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card’s
+                        content.</p>
+                    <a href="#" class="btn btn-primary" (click)="goodLife()">View more</a>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Good Life Plan</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card’s
-                    content.</p>
-                <a href="#" class="btn btn-primary" (click)="goodLife()">View more</a>
-            </div>
+</div>
+
+<!-- Popup -->
+ <!-- Age Confirmation Modal -->
+<div class="modal fade"
+     id="ageModal"
+     tabindex="-1"
+     aria-hidden="true"
+     data-bs-backdrop="static"
+     data-bs-keyboard="false">
+
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Age Confirmation</h5>
+      </div>
+
+      <div class="modal-body text-center">
+        <p class="fs-5">Is your age above 30?</p>
+
+        <div class="d-flex justify-content-center gap-3 mt-3">
+          <button class="btn btn-success px-4"
+                  (click)="onAgeChoice(true)"
+                  data-bs-dismiss="modal">
+            Yes
+          </button>
+
+          <button class="btn btn-danger px-4"
+                  (click)="onAgeChoice(false)"
+                  data-bs-dismiss="modal">
+            No
+          </button>
         </div>
+      </div>
+
     </div>
+  </div>
 </div>

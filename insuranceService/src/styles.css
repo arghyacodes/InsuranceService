@@ -13,3 +13,13 @@ footer{
   align-items: center; /* Optional: vertically center */
    height: 72vh;
 }
+
+body {
+  padding-top: 56px;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+}
