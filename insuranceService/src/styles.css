@@ -23,3 +23,11 @@ body {
     padding-top: 70px;
   }
 }
+.side-apart-ri{
+  display: flex;
+  justify-content: space-between;
+}
+
+img{
+    max-height: 400px;
+}

@@ -1,40 +1,36 @@
 <div class="container">
-    <div class="row nav-justify">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card">
-                <img src="/assets/images/plan1.jpg" class="card-img-top img-fluid" alt="careHealth">
-                <div class="card-body">
-                    <h5 class="card-title">Care Health Plan</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s
-                        content.</p>
-                    <a href="#" class="btn btn-primary" (click)="careHealth()">View more</a>
-                </div>
-            </div>
+  <div class="row nav-justify">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card">
+        <img src="/assets/images/plan1.jpg" class="card-img-top img-fluid" alt="careHealth">
+        <div class="card-body">
+          <h5 class="card-title">{{plans[0].planName}}</h5>
+          <p class="card-text">{{plans[0].description}}</p>
+          <button class="btn btn-primary" type="button" (click)="viewPlan(plans[0])">
+            View more
+          </button>
         </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <img src="/assets/images/plan2.jpg" class="card-img-top img-fluid" alt="goodLife">
-                <div class="card-body">
-                    <h5 class="card-title">Good Life Plan</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s
-                        content.</p>
-                    <a href="#" class="btn btn-primary" (click)="goodLife()">View more</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <img src="/assets/images/plan2.jpg" class="card-img-top img-fluid" alt="goodLife">
+        <div class="card-body">
+          <h5 class="card-title">{{plans[1].planName}}</h5>
+          <p class="card-text">{{plans[1].description}}</p>
+          <button class="btn btn-primary" type="button" (click)="viewPlan(plans[1])">
+            View more
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Popup -->
- <!-- Age Confirmation Modal -->
-<div class="modal fade"
-     id="ageModal"
-     tabindex="-1"
-     aria-hidden="true"
-     data-bs-backdrop="static"
-     data-bs-keyboard="false">
+<!-- Age Confirmation Modal -->
+<div class="modal fade" id="ageModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static"
+  data-bs-keyboard="false">
 
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -47,15 +43,11 @@
         <p class="fs-5">Is your age above 30?</p>
 
         <div class="d-flex justify-content-center gap-3 mt-3">
-          <button class="btn btn-success px-4"
-                  (click)="onAgeChoice(true)"
-                  data-bs-dismiss="modal">
+          <button class="btn btn-success px-4" (click)="onAgeChoice(true)" data-bs-dismiss="modal">
             Yes
           </button>
 
-          <button class="btn btn-danger px-4"
-                  (click)="onAgeChoice(false)"
-                  data-bs-dismiss="modal">
+          <button class="btn btn-danger px-4" (click)="onAgeChoice(false)" data-bs-dismiss="modal">
             No
           </button>
         </div>
@@ -63,4 +55,67 @@
 
     </div>
   </div>
+</div>
+<!-- Plan Details Modal -->
+
+<div class="modal fade" id="planDetailsModal" tabindex="-1">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+
+    <div class="modal-content">
+
+      <div class="modal-header bg-primary text-white">
+
+        <h5 class="modal-title">Plan Details</h5>
+
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <h4 class="text-primary">
+
+          {{ selectedPlan?.planName }}
+
+        </h4>
+
+        <p class="mt-3">
+
+          {{ selectedPlan?.description }}
+
+        </p>
+
+        <div class="text-end mt-4">
+
+          <span class="fw-bold fs-3 text-success">
+
+            ₹ {{ selectedPlan?.baseAmt }}
+
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+
+          Close
+
+        </button>
+
+        <button class="btn btn-success" (click)="buyNow()">
+
+          Buy Now
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>

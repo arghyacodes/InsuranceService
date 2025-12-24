@@ -1,50 +1,72 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { Navbar } from "../navbar/navbar";
-import { Footer } from "../footer/footer";
 import { Router } from '@angular/router';
+import { PlansService } from '../../services/plans-service';
 
-declare var bootstrap: any; // IMPORTANT for Bootstrap modal
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-plans',
   standalone: true,
-  imports: [Navbar, Footer],
+  imports: [],
   templateUrl: './plans.html',
   styleUrl: './plans.css',
 })
 export class Plans implements AfterViewInit {
 
+  plans: any[] = [];
+  selectedPlan: any;
   isAbove30: boolean | null = null;
 
-  constructor(private router: Router) {}
+  constructor(
+    private plansService: PlansService,
+    private router: Router
+  ) {}
 
-  // 🔹 Trigger popup when page loads
   ngAfterViewInit(): void {
+    this.loadPlans();
+    this.openAgePopup();
+  }
+
+  // 🔹 Load plans from JSON server
+  loadPlans() {
+    this.plansService.getAllPlans().subscribe(data => {
+      this.plans = data;
+    });
+  }
+
+  // 🔹 Open age popup first
+  openAgePopup() {
     setTimeout(() => {
       const modalEl = document.getElementById('ageModal');
       if (modalEl) {
-        const modal = new bootstrap.Modal(modalEl);
-        modal.show();
+        new bootstrap.Modal(modalEl).show();
       }
-    }, 200); // small delay ensures DOM is ready
+    }, 300);
   }
 
-  // 🔹 Handle Yes / No
+  // 🔹 Save age choice
   onAgeChoice(choice: boolean) {
     this.isAbove30 = choice;
-    console.log('Age above 30:', choice);
-
-    // Optional: store value for later use
     localStorage.setItem('isAbove30', String(choice));
   }
 
-  careHealth() {
-    console.log('Care Health Plan Button Clicked');
-    console.log('Above 30:', this.isAbove30);
+  // 🔹 View more → open plan popup (only AFTER age chosen)
+  viewPlan(plan: any) {
+    if (this.isAbove30 === null) {
+      this.openAgePopup();
+      return;
+    }
+
+    this.selectedPlan = plan;
+    const modalEl = document.getElementById('planDetailsModal');
+    if (modalEl) {
+      new bootstrap.Modal(modalEl).show();
+    }
   }
 
-  goodLife() {
-    console.log('Good Life Plan Button Clicked');
-    console.log('Above 30:', this.isAbove30);
+  buyNow() {
+    console.log('Buying plan:', this.selectedPlan);
+    console.log('Age above 30:', this.isAbove30);
+    // this.router.navigate(['/payment']);
   }
 }

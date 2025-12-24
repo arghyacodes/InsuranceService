@@ -1,3 +1,11 @@
 .card-img-top{
     height: 45vh;
 }
+
+.card-text{
+    display: -webkit-box;
+    /* limit description text to 3 lines */
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
