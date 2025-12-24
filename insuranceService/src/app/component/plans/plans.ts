@@ -8,7 +8,6 @@ declare var bootstrap: any;
 
 @Component({
   selector: 'app-plans',
-  // standalone: true,
   imports: [FormsModule],
   templateUrl: './plans.html',
   styleUrl: './plans.css',
@@ -33,14 +32,13 @@ export class Plans implements AfterViewInit {
     this.openAgePopup();
   }
 
-  // 🔹 Load plans from JSON server
   loadPlans() {
     this.plansService.getAllPlans().subscribe(data => {
       this.plans = data;
     });
   }
 
-  // 🔹 Open age popup first
+
   openAgePopup() {
     setTimeout(() => {
       const modalEl = document.getElementById('ageModal');
@@ -50,13 +48,13 @@ export class Plans implements AfterViewInit {
     }, 300);
   }
 
-  // 🔹 Save age choice
+
   onAgeChoice(choice: boolean) {
     this.isAbove30 = choice;
     localStorage.setItem('isAbove30', String(choice));
   }
 
-  // 🔹 View more → open plan popup (only AFTER age chosen)
+
   viewPlan(plan: any) {
     if (this.isAbove30 === null) {
       this.openAgePopup();
@@ -79,8 +77,6 @@ export class Plans implements AfterViewInit {
   }
   buyNow() {
 
-    // Close plan details modal
-
     const planModal = document.getElementById('planDetailsModal');
 
     if (planModal) {
@@ -88,8 +84,6 @@ export class Plans implements AfterViewInit {
       bootstrap.Modal.getInstance(planModal)?.hide();
 
     }
-
-    // Open booking form modal
 
     const bookingModal = document.getElementById('bookingModal');
 
@@ -122,13 +116,12 @@ submitBooking(formData: any) {
 
   };
 
-  // Close booking modal
 
   const bookingModal = document.getElementById('bookingModal');
 
   bootstrap.Modal.getInstance(bookingModal!)?.hide();
 
-  // Open payment modal
+
 
   const paymentModal = document.getElementById('paymentModal');
 
@@ -172,7 +165,6 @@ submitBooking(formData: any) {
 
     next: () => {
 
-      // ✅ store details for success page
 
       localStorage.setItem(
 
@@ -182,7 +174,6 @@ submitBooking(formData: any) {
 
       );
 
-      // ✅ navigate to success page
 
       this.router.navigate(['/success']);
 
@@ -214,7 +205,6 @@ calculateValidityDate(years: number): string {
 
   today.setFullYear(today.getFullYear() + years);
 
-  // Format: YYYY-MM-DD
 
   return today.toISOString().split('T')[0];
 

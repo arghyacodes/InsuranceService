@@ -3,6 +3,7 @@
 }
 
 .card-text{
+    text-align: justify;
     display: -webkit-box;
     /* limit description text to 3 lines */
     -webkit-line-clamp: 3;

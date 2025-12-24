@@ -4,18 +4,20 @@
       "planId": 1,
       "planName": "Care Life Plan",
       "description": "The Care Life Plan safeguards you from unforeseen circumstances by providing instant coverage with no waiting period. Emergency services such as immediate ambulance, specialist consultation and complete assistance are its major features.",
-      "baseAmt": 3500
+      "baseAmt": 3500,
+      "id": "a1cc"
     },
     {
       "planId": 2,
       "planName": "Good Health Plan",
       "description": "The Good Health Plan is our best-selling plan. Facilities like Air Ambulance and Buy Now and Pay Later options to make it a stand out in the industry.",
-      "baseAmt": 2500
+      "baseAmt": 2500,
+      "id": "c557"
     }
   ],
   "bookings": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Justin",
       "city": "Chennai",
       "phone": "2780808989",
@@ -29,7 +31,7 @@
       "premiumAmt": 2500
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Ravi Kumar",
       "city": "Faridabad",
       "phone": "+919899999990",
@@ -82,6 +84,19 @@
       "validity": "2027-12-24",
       "premiumAmt": 4750,
       "paymentMode": "Debit Card"
+    },
+    {
+      "id": "9e20",
+      "name": "Kousik",
+      "city": "Kolkata",
+      "phone": "7063232326",
+      "email": "kousik@lordcr.com",
+      "age": 27,
+      "planId": 1,
+      "planName": "Care Life Plan",
+      "validity": "2028-12-24",
+      "premiumAmt": 9450,
+      "paymentMode": "Credit Card"
     }
   ]
 }

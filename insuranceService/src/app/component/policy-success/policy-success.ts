@@ -15,7 +15,6 @@ export class PolicySuccess {
 
   constructor() {
 
-    // Get data passed after payment
 
     const data = localStorage.getItem('policyDetails');
 
