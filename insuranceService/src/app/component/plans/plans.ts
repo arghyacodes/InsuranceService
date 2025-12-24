@@ -15,6 +15,7 @@ export class Plans implements AfterViewInit {
   plans: any[] = [];
   selectedPlan: any;
   isAbove30: boolean | null = null;
+  finalPrice:number=0;
 
   constructor(
     private plansService: PlansService,
@@ -57,6 +58,7 @@ export class Plans implements AfterViewInit {
     }
 
     this.selectedPlan = plan;
+    this.finalPrice=this.calculateFinalPrice(plan.baseAmt);
     const modalEl = document.getElementById('planDetailsModal');
     if (modalEl) {
       new bootstrap.Modal(modalEl).show();
@@ -67,5 +69,13 @@ export class Plans implements AfterViewInit {
     console.log('Buying plan:', this.selectedPlan);
     console.log('Age above 30:', this.isAbove30);
     // this.router.navigate(['/payment']);
+  }
+
+  calculateFinalPrice(baseAmt:number):
+  number{
+    if(this.isAbove30===true){
+      return baseAmt+1000;
+    }
+    return baseAmt;
   }
 }
