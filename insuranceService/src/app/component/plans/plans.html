@@ -4,8 +4,8 @@
       <div class="card">
         <img src="/assets/images/plan1.jpg" class="card-img-top img-fluid" alt="careHealth">
         <div class="card-body">
-          <h5 class="card-title">{{plans[0].planName}}</h5>
-          <p class="card-text">{{plans[0].description}}</p>
+          <h5 class="card-title">{{plans[0]?.planName}}</h5>
+          <p class="card-text">{{plans[0]?.description}}</p>
           <button class="btn btn-primary" type="button" (click)="viewPlan(plans[0])">
             View more
           </button>
@@ -16,8 +16,8 @@
       <div class="card">
         <img src="/assets/images/plan2.jpg" class="card-img-top img-fluid" alt="goodLife">
         <div class="card-body">
-          <h5 class="card-title">{{plans[1].planName}}</h5>
-          <p class="card-text">{{plans[1].description}}</p>
+          <h5 class="card-title">{{plans[1]?.planName}}</h5>
+          <p class="card-text">{{plans[1]?.description}}</p>
           <button class="btn btn-primary" type="button" (click)="viewPlan(plans[1])">
             View more
           </button>

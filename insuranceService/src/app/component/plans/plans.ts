@@ -7,7 +7,6 @@ declare var bootstrap: any;
 @Component({
   selector: 'app-plans',
   standalone: true,
-  imports: [],
   templateUrl: './plans.html',
   styleUrl: './plans.css',
 })
