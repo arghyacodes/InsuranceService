@@ -2,12 +2,13 @@ import { Component, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlansService } from '../../services/plans-service';
 import { FormsModule } from '@angular/forms';
+import { BookingService } from '../../services/booking-service';
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-plans',
-  standalone: true,
+  // standalone: true,
   imports: [FormsModule],
   templateUrl: './plans.html',
   styleUrl: './plans.css',
@@ -23,6 +24,7 @@ export class Plans implements AfterViewInit {
 
   constructor(
     private plansService: PlansService,
+    private bookingService:BookingService,
     private router: Router
   ) { }
 
@@ -133,20 +135,36 @@ submitBooking(formData: any) {
   new bootstrap.Modal(paymentModal!).show();
 
 }
-  processPayment(paymentData: any) {
-  const finalPayload = {
-    ...this.bookingData,
-    paymentFrequency: paymentData.paymentFreq,
+processPayment(paymentData: any) {
+
+  const bookingPayload = {
+    name: this.bookingData.name,
+    city: this.bookingData.city,
+    phone: this.bookingData.phone,
+    email: this.bookingData.email,
+    age: this.bookingData.age,
+
+    planId: this.selectedPlan.planId,
+    planName: this.selectedPlan.planName,
+
+    validity: `${this.bookingData.years} Years`,
+    premiumAmt: this.totalPremium,
+
     paymentMode: paymentData.paymentMode,
     cardNumber: paymentData.cardNumber,
-    paymentStatus: 'SUCCESS'
+    paymentFreq: paymentData.paymentFreq
   };
 
-  console.log('Final Booking Payload:', finalPayload);
-
-  alert('Payment successful! Insurance plan booked.');
-
-  // Later → POST to JSON Server /bookings
+  this.bookingService.createBooking(bookingPayload).subscribe({
+    next: (response) => {
+      console.log('Booking saved:', response);
+      alert('Payment successful! Booking confirmed.');
+    },
+    error: (err) => {
+      console.error('Booking failed:', err);
+      alert('Something went wrong. Please try again.');
+    }
+  });
 }
   calculateTotalPremium(years: number): number {
   let total = this.finalPrice * years;
