@@ -119,3 +119,190 @@
   </div>
 
 </div>
+<!-- Booking Form Modal -->
+
+<div class="modal fade"
+
+     id="bookingModal"
+
+     tabindex="-1"
+
+     aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+
+    <div class="modal-content">
+
+      <!-- Header -->
+
+      <div class="modal-header bg-success text-white">
+
+        <h5 class="modal-title">Buy Insurance Plan</h5>
+
+        <button class="btn-close btn-close-white"
+
+                data-bs-dismiss="modal"></button>
+
+      </div>
+
+      <!-- Body -->
+
+      <div class="modal-body">
+
+        <form #bookingForm="ngForm">
+
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+              <label class="form-label">Name</label>
+
+              <input type="text"
+
+                     class="form-control"
+
+                     name="name"
+
+                     ngModel
+
+                     required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+              <label class="form-label">City</label>
+
+              <input type="text"
+
+                     class="form-control"
+
+                     name="city"
+
+                     ngModel
+
+                     required>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+              <label class="form-label">Phone Number</label>
+
+              <input type="tel"
+
+                     class="form-control"
+
+                     name="phone"
+
+                     ngModel
+
+                     pattern="[0-9]{10}"
+
+                     required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+              <label class="form-label">Email</label>
+
+              <input type="email"
+
+                     class="form-control"
+
+                     name="email"
+
+                     ngModel
+
+                     required>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+              <label class="form-label">Age</label>
+
+              <input type="number"
+
+                     class="form-control"
+
+                     name="age"
+
+                     ngModel
+
+                     min="1"
+
+                     required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+              <label class="form-label">Plan Duration</label>
+
+              <select class="form-select"
+
+                      name="duration"
+
+                      ngModel
+
+                      required>
+
+                <option value="">Select years</option>
+
+                <option value="1">1 Year</option>
+
+                <option value="2">2 Years</option>
+
+                <option value="3">3 Years</option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- Footer -->
+
+      <div class="modal-footer">
+
+        <button class="btn btn-secondary"
+
+                data-bs-dismiss="modal">
+
+          Cancel
+
+        </button>
+
+        <button class="btn btn-success"
+
+                [disabled]="!bookingForm.valid"
+
+                (click)="submitBooking(bookingForm.value)"
+
+                data-bs-dismiss="modal">
+
+          Confirm Purchase
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
