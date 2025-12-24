@@ -19,6 +19,7 @@ export class Plans implements AfterViewInit {
   bookingData: any;
   isAbove30: boolean | null = null;
   finalPrice: number = 0;
+  totalPremium:number=0;
 
   constructor(
     private plansService: PlansService,
@@ -97,54 +98,65 @@ export class Plans implements AfterViewInit {
     }
 
   }
-  submitBooking(formData: any) {
+submitBooking(formData: any) {
 
-    this.bookingData = {
+  const years = Number(formData.duration);
 
-      ...formData,
+  this.totalPremium = this.calculateTotalPremium(years);
 
-      planId: this.selectedPlan.planId,
+  this.bookingData = {
 
-      planName: this.selectedPlan.planName,
+    ...formData,
 
-      premiumAmount: this.finalPrice
+    planId: this.selectedPlan.planId,
 
-    };
+    planName: this.selectedPlan.planName,
 
-    // Close booking modal
+    years,
 
-    const bookingModal = document.getElementById('bookingModal');
+    basePremium: this.finalPrice,
 
-    bootstrap.Modal.getInstance(bookingModal!)?.hide();
+    totalPremium: this.totalPremium
 
-    // Open payment modal
+  };
 
-    const paymentModal = document.getElementById('paymentModal');
+  // Close booking modal
 
-    new bootstrap.Modal(paymentModal!).show();
+  const bookingModal = document.getElementById('bookingModal');
 
-  }
+  bootstrap.Modal.getInstance(bookingModal!)?.hide();
+
+  // Open payment modal
+
+  const paymentModal = document.getElementById('paymentModal');
+
+  new bootstrap.Modal(paymentModal!).show();
+
+}
   processPayment(paymentData: any) {
+  const finalPayload = {
+    ...this.bookingData,
+    paymentFrequency: paymentData.paymentFreq,
+    paymentMode: paymentData.paymentMode,
+    cardNumber: paymentData.cardNumber,
+    paymentStatus: 'SUCCESS'
+  };
 
-    const finalPayload = {
+  console.log('Final Booking Payload:', finalPayload);
 
-      ...this.bookingData,
+  alert('Payment successful! Insurance plan booked.');
 
-      paymentMode: paymentData.paymentMode,
+  // Later → POST to JSON Server /bookings
+}
+  calculateTotalPremium(years: number): number {
+  let total = this.finalPrice * years;
 
-      cardNumber: paymentData.cardNumber,
-
-      paymentStatus: 'SUCCESS'
-
-    };
-
-    console.log('Final Booking Payload:', finalPayload);
-
-    alert('Payment successful! Insurance plan booked.');
-
-    // NEXT STEP (later):
-
-    // this.bookingService.createBooking(finalPayload).subscribe(...)
-
+  if (years === 2) {
+    total = total * 0.95; // 5% discount
+  } else if (years === 3) {
+    total = total * 0.90; // 10% discount
   }
+
+  return Math.round(total);
+}
 }
