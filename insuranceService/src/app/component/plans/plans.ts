@@ -137,6 +137,10 @@ submitBooking(formData: any) {
 }
 processPayment(paymentData: any) {
 
+  const validityDate = this.calculateValidityDate(
+    Number(this.bookingData.years)
+  );
+
   const bookingPayload = {
     name: this.bookingData.name,
     city: this.bookingData.city,
@@ -147,23 +151,16 @@ processPayment(paymentData: any) {
     planId: this.selectedPlan.planId,
     planName: this.selectedPlan.planName,
 
-    validity: `${this.bookingData.years} Years`,
+    validity: validityDate,          
     premiumAmt: this.totalPremium,
 
     paymentMode: paymentData.paymentMode,
     cardNumber: paymentData.cardNumber,
-    paymentFreq: paymentData.paymentFreq
   };
 
   this.bookingService.createBooking(bookingPayload).subscribe({
-    next: (response) => {
-      console.log('Booking saved:', response);
-      alert('Payment successful! Booking confirmed.');
-    },
-    error: (err) => {
-      console.error('Booking failed:', err);
-      alert('Something went wrong. Please try again.');
-    }
+    next: () => alert('Payment successful! Booking confirmed.'),
+    error: () => alert('Something went wrong!')
   });
 }
   calculateTotalPremium(years: number): number {
@@ -176,5 +173,16 @@ processPayment(paymentData: any) {
   }
 
   return Math.round(total);
+}
+calculateValidityDate(years: number): string {
+
+  const today = new Date();
+
+  today.setFullYear(today.getFullYear() + years);
+
+  // Format: YYYY-MM-DD
+
+  return today.toISOString().split('T')[0];
+
 }
 }
