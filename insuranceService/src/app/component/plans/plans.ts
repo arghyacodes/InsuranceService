@@ -16,6 +16,7 @@ export class Plans implements AfterViewInit {
 
   plans: any[] = [];
   selectedPlan: any;
+  bookingData: any;
   isAbove30: boolean | null = null;
   finalPrice: number = 0;
 
@@ -98,7 +99,7 @@ export class Plans implements AfterViewInit {
   }
   submitBooking(formData: any) {
 
-    const bookingDetails = {
+    this.bookingData = {
 
       ...formData,
 
@@ -110,11 +111,40 @@ export class Plans implements AfterViewInit {
 
     };
 
-    console.log('Booking Details:', bookingDetails);
+    // Close booking modal
 
-    // Later → POST to JSON Server
+    const bookingModal = document.getElementById('bookingModal');
 
-    // this.bookingService.createBooking(bookingDetails).subscribe(...)
+    bootstrap.Modal.getInstance(bookingModal!)?.hide();
+
+    // Open payment modal
+
+    const paymentModal = document.getElementById('paymentModal');
+
+    new bootstrap.Modal(paymentModal!).show();
+
+  }
+  processPayment(paymentData: any) {
+
+    const finalPayload = {
+
+      ...this.bookingData,
+
+      paymentMode: paymentData.paymentMode,
+
+      cardNumber: paymentData.cardNumber,
+
+      paymentStatus: 'SUCCESS'
+
+    };
+
+    console.log('Final Booking Payload:', finalPayload);
+
+    alert('Payment successful! Insurance plan booked.');
+
+    // NEXT STEP (later):
+
+    // this.bookingService.createBooking(finalPayload).subscribe(...)
 
   }
 }

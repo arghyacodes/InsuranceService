@@ -121,13 +121,7 @@
 </div>
 <!-- Booking Form Modal -->
 
-<div class="modal fade"
-
-     id="bookingModal"
-
-     tabindex="-1"
-
-     aria-hidden="true">
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
 
   <div class="modal-dialog modal-dialog-centered modal-lg">
 
@@ -139,9 +133,7 @@
 
         <h5 class="modal-title">Buy Insurance Plan</h5>
 
-        <button class="btn-close btn-close-white"
-
-                data-bs-dismiss="modal"></button>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
 
       </div>
 
@@ -157,15 +149,7 @@
 
               <label class="form-label">Name</label>
 
-              <input type="text"
-
-                     class="form-control"
-
-                     name="name"
-
-                     ngModel
-
-                     required>
+              <input type="text" class="form-control" name="name" ngModel required>
 
             </div>
 
@@ -173,15 +157,7 @@
 
               <label class="form-label">City</label>
 
-              <input type="text"
-
-                     class="form-control"
-
-                     name="city"
-
-                     ngModel
-
-                     required>
+              <input type="text" class="form-control" name="city" ngModel required>
 
             </div>
 
@@ -193,17 +169,7 @@
 
               <label class="form-label">Phone Number</label>
 
-              <input type="tel"
-
-                     class="form-control"
-
-                     name="phone"
-
-                     ngModel
-
-                     pattern="[0-9]{10}"
-
-                     required>
+              <input type="tel" class="form-control" name="phone" ngModel pattern="[0-9]{10}" required>
 
             </div>
 
@@ -211,15 +177,7 @@
 
               <label class="form-label">Email</label>
 
-              <input type="email"
-
-                     class="form-control"
-
-                     name="email"
-
-                     ngModel
-
-                     required>
+              <input type="email" class="form-control" name="email" ngModel required>
 
             </div>
 
@@ -231,17 +189,7 @@
 
               <label class="form-label">Age</label>
 
-              <input type="number"
-
-                     class="form-control"
-
-                     name="age"
-
-                     ngModel
-
-                     min="1"
-
-                     required>
+              <input type="number" class="form-control" name="age" ngModel min="1" required>
 
             </div>
 
@@ -249,13 +197,7 @@
 
               <label class="form-label">Plan Duration</label>
 
-              <select class="form-select"
-
-                      name="duration"
-
-                      ngModel
-
-                      required>
+              <select class="form-select" name="duration" ngModel required>
 
                 <option value="">Select years</option>
 
@@ -279,23 +221,102 @@
 
       <div class="modal-footer">
 
-        <button class="btn btn-secondary"
-
-                data-bs-dismiss="modal">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
 
           Cancel
 
         </button>
 
-        <button class="btn btn-success"
-
-                [disabled]="!bookingForm.valid"
-
-                (click)="submitBooking(bookingForm.value)"
-
-                data-bs-dismiss="modal">
+        <button class="btn btn-success" [disabled]="!bookingForm.valid" (click)="submitBooking(bookingForm.value)"
+          data-bs-dismiss="modal">
 
           Confirm Purchase
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Payment Modal -->
+
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+
+      <!-- Header -->
+
+      <div class="modal-header bg-primary text-white">
+
+        <h5 class="modal-title">Payment Details</h5>
+
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+
+      </div>
+
+      <!-- Body -->
+
+      <div class="modal-body">
+
+        <form #paymentForm="ngForm">
+
+          <div class="mb-3">
+
+            <label class="form-label">Payment Mode</label>
+
+            <select class="form-select" name="paymentMode" ngModel required>
+
+              <option value="">Select</option>
+
+              <option value="Credit Card">Credit Card</option>
+
+              <option value="Debit Card">Debit Card</option>
+
+            </select>
+
+          </div>
+
+          <div class="mb-3">
+
+            <label class="form-label">Card Number</label>
+
+            <input type="text" class="form-control" name="cardNumber" ngModel pattern="[0-9]{16}"
+              placeholder="1234123412341234" required>
+
+          </div>
+
+          <div class="mb-3">
+
+            <label class="form-label">Amount to Pay</label>
+
+            <input type="text" class="form-control fw-bold" [value]="'₹ ' + finalPrice" readonly>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- Footer -->
+
+      <div class="modal-footer">
+
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+
+          Cancel
+
+        </button>
+
+        <button class="btn btn-success" [disabled]="!paymentForm.valid" (click)="processPayment(paymentForm.value)"
+          data-bs-dismiss="modal">
+
+          Pay Now
 
         </button>
 
