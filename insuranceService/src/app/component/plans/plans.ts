@@ -134,34 +134,68 @@ submitBooking(formData: any) {
 
   new bootstrap.Modal(paymentModal!).show();
 
-}
-processPayment(paymentData: any) {
+}processPayment(paymentData: any) {
 
   const validityDate = this.calculateValidityDate(
+
     Number(this.bookingData.years)
+
   );
 
   const bookingPayload = {
+
     name: this.bookingData.name,
+
     city: this.bookingData.city,
+
     phone: this.bookingData.phone,
+
     email: this.bookingData.email,
+
     age: this.bookingData.age,
 
     planId: this.selectedPlan.planId,
+
     planName: this.selectedPlan.planName,
 
-    validity: validityDate,          
+    validity: validityDate,
+
     premiumAmt: this.totalPremium,
 
     paymentMode: paymentData.paymentMode,
-    cardNumber: paymentData.cardNumber,
+
+    paymentFreq: paymentData.paymentFreq
+
   };
 
   this.bookingService.createBooking(bookingPayload).subscribe({
-    next: () => alert('Payment successful! Booking confirmed.'),
-    error: () => alert('Something went wrong!')
+
+    next: () => {
+
+      // ✅ store details for success page
+
+      localStorage.setItem(
+
+        'policyDetails',
+
+        JSON.stringify(bookingPayload)
+
+      );
+
+      // ✅ navigate to success page
+
+      this.router.navigate(['/success']);
+
+    },
+
+    error: () => {
+
+      alert('Payment failed. Please try again.');
+
+    }
+
   });
+
 }
   calculateTotalPremium(years: number): number {
   let total = this.finalPrice * years;

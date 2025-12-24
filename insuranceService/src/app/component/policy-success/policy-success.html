@@ -1,0 +1,55 @@
+<div class="container mt-5">
+
+  <h3 class="text-success text-center mb-4">
+
+    🎉 Congratulations! You have bought a new policy
+
+  </h3>
+
+  <p class="text-center mb-4">
+
+    Below are the policy details.
+
+  </p>
+
+  <div class="table-responsive">
+
+    <table class="table table-bordered table-striped text-center">
+
+      <thead class="table-success">
+
+        <tr>
+
+          <th>Policy Name</th>
+
+          <th>Valid Till</th>
+
+          <th>Premium Amount (₹)</th>
+
+          <th>Payment Mode</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+
+          <td>{{ policyDetails?.planName }}</td>
+
+          <td>{{ policyDetails?.validity }}</td>
+
+          <td>{{ policyDetails?.premiumAmt }}</td>
+
+          <td>{{ policyDetails?.paymentMode }}</td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

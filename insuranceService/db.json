@@ -69,6 +69,19 @@
       "premiumAmt": 12150,
       "paymentMode": "Credit Card",
       "cardNumber": "1223244000000000"
+    },
+    {
+      "id": "343b",
+      "name": "Thor",
+      "city": "Nyc",
+      "phone": "9999995555",
+      "email": "thor@marvel.com",
+      "age": 26,
+      "planId": 2,
+      "planName": "Good Health Plan",
+      "validity": "2027-12-24",
+      "premiumAmt": 4750,
+      "paymentMode": "Debit Card"
     }
   ]
 }
