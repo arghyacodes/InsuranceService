@@ -6,7 +6,7 @@
     text-align: justify;
     display: -webkit-box;
     /* limit description text to 3 lines */
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

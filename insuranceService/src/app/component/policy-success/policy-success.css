@@ -1,7 +1,13 @@
-table{
-    background-color: #fff;
+table th {
+
+  width: 40%;
+
+  font-weight: 600;
+
 }
 
-h3{
-    font-weight: 600;
+table td {
+
+  width: 60%;
+
 }

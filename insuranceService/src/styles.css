@@ -1,10 +1,6 @@
 footer{
-   position: fixed;
-   bottom: 0;
-   left: 0;
    width: 100vw;
    text-align: center;
-   align-items: center;
 }
 
 .nav-justify{
@@ -15,7 +11,19 @@ footer{
 }
 
 body {
-  padding-top: 56px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+app-root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main{
+  flex:1;
 }
 
 @media (min-width: 768px) {
@@ -30,4 +38,72 @@ body {
 
 img{
     max-height: 400px;
+}
+
+.navbar .nav-link {
+
+  position: relative;
+
+  color: rgba(255, 255, 255, 0.85);
+
+  padding: 0.5rem 1rem;
+
+  border-radius: 4px;
+
+  transition: all 0.3s ease;
+
+}
+
+/* Hover */
+
+.navbar .nav-link:hover {
+
+  color: #fff;
+
+  background-color: rgba(255, 255, 255, 0.15);
+
+}
+
+/* Active */
+
+.navbar .nav-link.active {
+
+  color: #fff;
+
+  background-color: rgba(255, 255, 255, 0.3);
+
+  font-weight: 600;
+
+}
+
+/* Underline animation */
+
+.navbar .nav-link::after {
+
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: 0;
+
+  width: 0;
+
+  height: 2px;
+
+  background: #fff;
+
+  transition: width 0.3s ease;
+
+  pointer-events: none;   /* ✅ CRITICAL */
+
+}
+
+.navbar .nav-link:hover::after,
+
+.navbar .nav-link.active::after {
+
+  width: 100%;
+
 }

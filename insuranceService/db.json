@@ -97,6 +97,19 @@
       "validity": "2028-12-24",
       "premiumAmt": 9450,
       "paymentMode": "Credit Card"
+    },
+    {
+      "id": "e88a",
+      "name": "Captain",
+      "city": "London",
+      "phone": "9999995558",
+      "email": "thor@marvel.com",
+      "age": 20,
+      "planId": 1,
+      "planName": "Care Life Plan",
+      "validity": "2028-12-26",
+      "premiumAmt": 9450,
+      "paymentMode": "Credit Card"
     }
   ]
 }
